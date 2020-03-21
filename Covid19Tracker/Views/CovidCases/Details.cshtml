@@ -1,0 +1,57 @@
+﻿@model Covid19Tracker.Entities.Tracker.CovidCase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <h1>Details</h1>
+
+    <div>
+        <h4>CovidCase</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nationality)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nationality)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CaseStatus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CaseStatus)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.State)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.State)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.ID">Edit</a> |
+        <a asp-action="Index" class="mt-3 btn btn-circle btn-primary">Back to List</a>
+    </div>
+    </div>

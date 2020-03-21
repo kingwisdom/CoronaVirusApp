@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Covid19Tracker.Data\Covid19Tracker.Data.csproj" />
+    <ProjectReference Include="..\Covid19Tracker.Entities\Covid19Tracker.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
