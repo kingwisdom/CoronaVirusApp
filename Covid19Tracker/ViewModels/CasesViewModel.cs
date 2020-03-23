@@ -11,5 +11,10 @@ namespace Covid19Tracker.Web.ViewModels
         public int Recorverd { get; set; }
         public int Sick { get; set; }
         public int Death { get; set; }
+
+        public int getrecoverbar { get; set; }
+        public int getsickbar { get; set; }
+        public int getdeathbar { get; set; }
+
     }
 }

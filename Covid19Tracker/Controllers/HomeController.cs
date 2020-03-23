@@ -22,14 +22,30 @@ namespace Covid19Tracker.Controllers
             _covid19CaseManager = covid19CaseManager;
         }
 
+
+        // Case percentage calculations for chartd
+        
         public IActionResult Index()
         {
-            CasesViewModel cases = new CasesViewModel { 
-            
+            var all = _covid19CaseManager.GetAllCasesCount();
+            var recov = _covid19CaseManager.GetAllRecoveriesCount();
+            var sicki = _covid19CaseManager.GetAllSickCount();
+            var deathy = _covid19CaseManager.GetAllDeathCount();
+            double a = recov / all;
+            double Getrecoverbar = a;
+            double b = sicki / all;
+            double Getsickbar = b;
+            double c = deathy / all;
+            double Getdeathbar = c;
+            CasesViewModel cases = new CasesViewModel {
+
                 All = _covid19CaseManager.GetAllCasesCount(),
                 Death = _covid19CaseManager.GetAllDeathCount(),
                 Recorverd = _covid19CaseManager.GetAllRecoveriesCount(),
-                Sick = _covid19CaseManager.GetAllSickCount()
+                Sick = _covid19CaseManager.GetAllSickCount(),
+                getrecoverbar = Convert.ToInt32(Getrecoverbar),
+                getsickbar = Convert.ToInt32(Getsickbar),
+                getdeathbar = Convert.ToInt32(Getdeathbar)
             };
             //var model =  _covid19CaseManager.GetAllCasesCount();
 
