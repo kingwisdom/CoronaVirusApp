@@ -27,25 +27,25 @@ namespace Covid19Tracker.Controllers
         
         public IActionResult Index()
         {
-            var all = _covid19CaseManager.GetAllCasesCount();
-            var recov = _covid19CaseManager.GetAllRecoveriesCount();
-            var sicki = _covid19CaseManager.GetAllSickCount();
-            var deathy = _covid19CaseManager.GetAllDeathCount();
+            var all = Convert.ToDouble(_covid19CaseManager.GetAllCasesCount());
+            var recov = Convert.ToDouble(_covid19CaseManager.GetAllRecoveriesCount());
+            var sicki = Convert.ToDouble(_covid19CaseManager.GetAllSickCount());
+            var deathy = Convert.ToDouble(_covid19CaseManager.GetAllDeathCount());
             double a = recov / all;
-            double Getrecoverbar = a;
+            double Getrecoverbar = Math.Round(a*100);
             double b = sicki / all;
-            double Getsickbar = b;
+            double Getsickbar = Math.Round(b * 100);
             double c = deathy / all;
-            double Getdeathbar = c;
+            double Getdeathbar = Math.Round(a * 100);
             CasesViewModel cases = new CasesViewModel {
 
                 All = _covid19CaseManager.GetAllCasesCount(),
                 Death = _covid19CaseManager.GetAllDeathCount(),
                 Recorverd = _covid19CaseManager.GetAllRecoveriesCount(),
                 Sick = _covid19CaseManager.GetAllSickCount(),
-                getrecoverbar = Convert.ToInt32(Getrecoverbar),
-                getsickbar = Convert.ToInt32(Getsickbar),
-                getdeathbar = Convert.ToInt32(Getdeathbar)
+                getrecoverbar = (Getrecoverbar),
+                getsickbar = (Getsickbar),
+                getdeathbar = (Getdeathbar)
             };
             //var model =  _covid19CaseManager.GetAllCasesCount();
 
