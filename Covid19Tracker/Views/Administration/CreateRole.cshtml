@@ -1,0 +1,44 @@
+﻿@model CreateRoleViewModel
+
+@{
+    ViewBag.Title = "Create Role";
+   
+}
+
+
+
+<div class="container-fluid">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading main-color-bg">
+                        <h3 class="parnel-title p-4">Edit Role</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="card card-body">
+                            <form asp-controller="Administration" asp-action="createRole" method="post">
+                                
+                                <div class="form-group">
+                                    <label asp-for="RoleName"></label>
+                                    <input asp-for="RoleName" class="form-control" />
+                                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-outline-dark">Create</button>
+                                </div>
+
+                                @section Scripts{
+                                    <script>
+                                        
+                                    </script>
+                                }
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        
+    </div>

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Covid19Tracker.Entities.Tracker.CovidCase>
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+@model IEnumerable<Covid19Tracker.Entities.Tracker.CovidCase>
 
 @{
     ViewData["Title"] = "Index";
@@ -68,17 +70,20 @@
                                         @Html.DisplayFor(modelItem => item.State)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-success">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-success">Details</a>
+                                        @if (signInManager.IsSignedIn(User))
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">Edit</a>  <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+}
                                     </td>
+
                                 </tr>
                             }
-                            
                         </tbody>
                     </table>
                 </div>
-                </div>
-
-                
             </div>
+
+
+        </div>
+        
