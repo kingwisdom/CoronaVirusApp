@@ -3,13 +3,16 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
+var death = document.getElementById("death").value;
+var recovered = document.getElementById("recovered").value;
+var sick = document.getElementById("sick").value;
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["Death", "Recovered", "Sick"],
     datasets: [{
-      data: [55, 30, 15],
+      data: [death, recovered, sick],
         backgroundColor: ['#f6563a', '#1cc88a', '#c8e429'],
         hoverBackgroundColor: ['#ce280b', '#17a673', '#c9cc0f'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

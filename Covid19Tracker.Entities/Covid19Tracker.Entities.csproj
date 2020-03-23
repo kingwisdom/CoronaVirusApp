@@ -8,4 +8,8 @@
     <Folder Include="Manager\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\Covid19Tracker\wwwroot\theme\js\demo\chart-pie-demo.js" Link="chart-pie-demo.js" />
+  </ItemGroup>
+
 </Project>
