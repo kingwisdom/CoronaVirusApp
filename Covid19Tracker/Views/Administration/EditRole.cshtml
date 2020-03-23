@@ -1,0 +1,69 @@
+﻿@model EditRoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+
+}
+
+<div class="container-fluid">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading main-color-bg">
+                        <h3 class="parnel-title p-4">Edit Employee</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="card card-body">
+                            <form asp-controller="Administration" asp-action="editRole" method="post">
+                                <div class="form-group">
+                                    <label asp-for="Id"></label>
+                                    <input asp-for="Id" disabled class="form-control" />
+                                    
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="RoleName"></label>
+                                    <input asp-for="RoleName" class="form-control" />
+                                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-outline-warning">Create</button>
+                                    <a asp-action="ListRoles" asp-controller="Administration" class="btn btn-outline-warning">Back</a>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Users in this role</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        @if (Model.Users.Any())
+                                        {
+                                            foreach (var user in Model.Users)
+                                            {
+                                                <h5 class="card-title">@user</h5>
+                                            }
+                                        }
+                                        else
+                                        {
+                                                <h5 class="card-title">None at the model</h5>
+                                        }
+
+                                    <a class="btn btn-outline-dark" asp-action="EditUsersInRole" asp-controller="administration" asp-route-id="@Model.Id">Add or Remove Role</a>
+                                    </div>
+                                </div>
+
+
+                                @section Scripts{
+                                    <script>
+
+                                    </script>
+                                }
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>

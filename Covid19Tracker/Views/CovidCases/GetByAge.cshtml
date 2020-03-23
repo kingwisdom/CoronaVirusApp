@@ -1,0 +1,65 @@
+﻿@model Covid19Tracker.Entities.Tracker.CovidCase
+@{
+    ViewData["Title"] = "Search By Age or State";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <h1>Get Cases By Age or State</h1>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card card-body mt-3">
+                <form method="get" asp-action="GetAllByAge" asp-controller="CovidCases">
+                    <div class="form-group">
+                        <select class="form-control" asp-for="Age">
+                            <option value="0,10">0 - 10 years</option>
+                            <option value="11,20">11 - 20 years</option>
+                            <option value="21,30">21 - 30 years</option>
+                            <option value="31,40">31 - 40 years</option>
+                            <option value="41,50">41 - 50 years</option>
+                            <option value="51,60">51 - 60 years</option>
+                            <option value="61,70">61 - 70 years</option>
+                            <option value="71,80">71 - 80 years</option>
+                            <option value="81,90">81 - 90 years</option>
+                            <option value="91,100">90 - 100 years</option>
+                            <option value="100,200">Above 100 years</option>
+                        </select>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary btn-block mt-3">Get Cases</button>
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+
+
+            </div>
+
+
+            <hr />
+            <div class="card card-body mt-3">
+                <form method="get" asp-action="GetAllByState" asp-controller="CovidCases">
+                    <div class="form-group">
+                        <select class="form-control" asp-for="State">
+                            <option value="abuja">Abuja</option>
+                            <option value="lagos">Lagos</option>
+                            <option value="abia">Abia</option>
+                            <option value="imo">Imo</option>
+                            
+                        </select>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary btn-block mt-3">Get Cases</button>
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+
+
+            </div>
+        </div>
+    </div>
+</div>

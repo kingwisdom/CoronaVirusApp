@@ -32,51 +32,67 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        @if (signInManager.IsSignedIn(User))
-        {
+        
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="home" asp-action="index">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-3">COVID19 <sup>2</sup></div>
-                </a>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>MENU</span>
-                    </a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Overview
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
                 </div>
+                <div class="sidebar-brand-text mx-3">COVID19 <sup>2</sup></div>
+            </a>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>MENU</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Overview
+            </div>
+            @if (signInManager.IsSignedIn(User))
+            {
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>View Case</span>
+                        <span>Cases</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Cases</h6>
                             <a class="collapse-item" asp-action="index" asp-controller="covidcases">All Cases</a>
                             <a class="collapse-item" asp-action="create" asp-controller="covidcases">Create Case</a>
-                            <a class="collapse-item" href="#">By States</a>
-                            <a class="collapse-item" href="#">By Age</a>
+
+                        </div>
+                    </div>
+                </li>
+            }
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTw" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>View Cases</span>
+                    </a>
+                    <div id="collapseTw" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">View Cases</h6>
+                            <a class="collapse-item" asp-action="index" asp-controller="covidcases">All Cases</a>
+                            <a class="collapse-item" asp-action="GetByAge" asp-controller="covidcases">View Case By Age</a>
+                            <a class="collapse-item" asp-action="GetByAge" asp-controller="covidcases">View Case By State</a>
+
                             <a class="collapse-item" href="#">Report Case</a>
                         </div>
                     </div>
@@ -92,13 +108,20 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Need To Know</h6>
 
-                            <a class="collapse-item" href="utilities-color.html">All Recovery</a>
-                            <a class="collapse-item" href="utilities-color.html">All Deaths</a>
+                            <a class="collapse-item" asp-action="GetByRecorvered" asp-controller="covidcases">All Recovery</a>
+                            <a class="collapse-item" asp-action="GetBySick" asp-controller="covidcases">All Sick</a>
+                            <a class="collapse-item" asp-action="GetByDeath" asp-controller="covidcases">All Deaths</a>
+                            <a class="collapse-item" asp-action="staysafe" asp-controller="covidcases">Stay Safe</a>
 
                         </div>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="staysafe" asp-controller="covidcases">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>How To Stay Safe</span>
+                    </a>
+                </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
@@ -109,7 +132,7 @@
                 </div>
 
             </ul>
-        }
+        
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -117,8 +140,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                @if (signInManager.IsSignedIn(User))
-                {
+               
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -145,41 +167,53 @@
 
 
                             <div class="topbar-divider d-none d-sm-block"></div>
-
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, @User.Identity.Name</span>
-                                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                                </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    @*<a class="dropdown-item" href="#">
-                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Profile
-                                        </a>*@
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, @User.Identity.Name</span>
+                                        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Activity Log
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                        @*<a class="dropdown-item" href="#">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a>*@
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Settings
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Activity Log
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+
+                                        <form method="post" asp-action="logout" asp-controller="account">
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>  Logout
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item no-arrow mx-1">
+                                    <a class="nav-link" asp-action="login" asp-controller="account">
+                                        <i class="fas fa-user fa-fw"></i> Login
+                                       
                                     </a>
-                                    <div class="dropdown-divider"></div>
+                                    <!-- Dropdown - Alerts -->
 
-                                    <form method="post" asp-action="logout" asp-controller="account">
-                                        <button type="submit" class="dropdown-item">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>  Logout
-                                        </button>
-                                    </form>
-                                </div>
-                            </li>
-
+                                </li>
+                            }
                         </ul>
 
                     </nav>
-                }
+                
                 <!-- End of Topbar -->
                 @*main body*@
 
