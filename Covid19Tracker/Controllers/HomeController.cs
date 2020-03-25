@@ -36,7 +36,7 @@ namespace Covid19Tracker.Controllers
             double b = sicki / all;
             double Getsickbar = Math.Round(b * 100);
             double c = deathy / all;
-            double Getdeathbar = Math.Round(a * 100);
+            double Getdeathbar = Math.Round(c * 100);
             CasesViewModel cases = new CasesViewModel {
 
                 All = _covid19CaseManager.GetAllCasesCount(),
