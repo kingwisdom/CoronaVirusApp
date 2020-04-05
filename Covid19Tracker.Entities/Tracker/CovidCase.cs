@@ -27,7 +27,7 @@ namespace Covid19Tracker.Entities.Tracker
 
     public enum Gender
     {
-        Male, Female
+        Male, Female, None
     }
 
     public enum CaseStatus

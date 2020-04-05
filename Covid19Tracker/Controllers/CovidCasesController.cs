@@ -163,6 +163,9 @@ namespace Covid19Tracker.Web.Controllers
             if (ModelState.IsValid)
             {
                 covidCase.ID = Guid.NewGuid();
+                covidCase.Name = "Anonymous";
+                covidCase.Age = 0;
+                covidCase.Gender = Gender.None;
                 covidCase.DateofRecorvery = DateTime.Today;
                 covidCase.DateOfDeath = DateTime.Today;
                 _context.Add(covidCase);

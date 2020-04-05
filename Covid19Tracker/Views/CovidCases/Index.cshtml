@@ -16,11 +16,14 @@
             <a asp-action="Create">Create New</a>
         </p>
 
+        <div class="card card-body">
+            <h2 class="text-center">Total: @Model.Count() </h2>
+        </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary">View All Cases</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -73,8 +76,8 @@
                                         <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-success">Details</a>
                                         @if (signInManager.IsSignedIn(User))
                                         {
-                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">Edit</a>  <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
-}
+                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">Edit</a> <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                                        }
                                     </td>
 
                                 </tr>
@@ -86,4 +89,4 @@
 
 
         </div>
-        
+
