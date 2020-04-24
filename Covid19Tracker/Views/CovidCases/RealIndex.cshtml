@@ -1,0 +1,85 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+@model IEnumerable<Covid19Tracker.Entities.Tracker.RealCases>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <p class="mb-4">Covid'19 is a serious virus so take it seriously</p>
+    <h1>View All Cases</h1>
+
+    
+
+    <div class="card card-body">
+        @*<h2 class="text-center">Total: @Model.Where()) </h2>*@
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">View All Cases</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.State)</th>
+                            <th>@Html.DisplayNameFor(model => model.Cases)</th>
+                            <th>@Html.DisplayNameFor(model => model.Recorvered)</th>
+                            <th>@Html.DisplayNameFor(model => model.Sick)</th>
+                            <th>@Html.DisplayNameFor(model => model.Death)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Cases)</th>
+                            <th>@Html.DisplayNameFor(model => model.State)</th>
+                            <th>@Html.DisplayNameFor(model => model.Recorvered)</th>
+                            <th>@Html.DisplayNameFor(model => model.Sick)</th>
+                            <th>@Html.DisplayNameFor(model => model.Death)</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.State)
+                                </td> 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cases)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Recorvered)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sick)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Death)
+                                </td>
+                               
+                                <td>
+                                    @if (signInManager.IsSignedIn(User))
+                                    {
+                                        <a asp-action="EditCases" asp-route-id="@item.ID" class="btn btn-warning">Edit</a> <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+

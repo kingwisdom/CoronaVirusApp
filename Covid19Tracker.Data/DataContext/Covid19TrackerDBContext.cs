@@ -16,6 +16,8 @@ namespace Covid19Tracker.Data.DataContext
         }
         public DbSet<CovidCase> Covid19Trackers { get; set; }
 
+        public DbSet<RealCases> RealCase { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,3 +27,4 @@ namespace Covid19Tracker.Data.DataContext
 
 
 }
+ 

@@ -73,8 +73,8 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Cases</h6>
-                            <a class="collapse-item" asp-action="index" asp-controller="covidcases">All Cases</a>
-                            <a class="collapse-item" asp-action="create" asp-controller="covidcases">Create Case</a>
+                            <a class="collapse-item" asp-action="realindex" asp-controller="covidcases">All Cases</a>
+                            <a class="collapse-item" asp-action="CreateCases" asp-controller="covidcases">Create Case</a>
 
                         </div>
                     </div>
@@ -89,9 +89,9 @@
                 <div id="collapseTw" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">View Cases</h6>
-                        <a class="collapse-item" asp-action="index" asp-controller="covidcases">All Cases</a>
-                        <a class="collapse-item" asp-action="GetByAge" asp-controller="covidcases">View Case By Age</a>
-                        <a class="collapse-item" asp-action="GetByAge" asp-controller="covidcases">View Case By State</a>
+                        <a class="collapse-item" asp-action="realindex" asp-controller="covidcases">All Cases</a>
+                        @*<a class="collapse-item" asp-action="GetByAge" asp-controller="covidcases">View Case By Age</a>
+                        <a class="collapse-item" asp-action="GetByAge" asp-controller="covidcases">View Case By State</a>*@
 
                         <a class="collapse-item" href="#">Report Case</a>
                     </div>

@@ -1,0 +1,71 @@
+﻿@model Covid19Tracker.Entities.Tracker.RealCases
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container-fluid">
+    <h1>Edit</h1>
+
+    <h4>CovidCase</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditCases" class="row">
+                <input type="hidden" asp-for="ID" />
+                <div class="col-md-6 col-sm-12 mx-auto">
+
+                    <div class="form-group">
+                        <label asp-for="State" class="control-label"></label>
+                        <select asp-for="State" class="form-control" asp-items="Html.GetEnumSelectList<Covid19Tracker.Entities.Tracker.States>()"></select>
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Cases" class="control-label"></label>
+                        <input type="text" class="form-control" asp-for="Cases" placeholder="Enter Recorverd Case" />
+                        <span asp-validation-for="Cases" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Sick" class="control-label"></label>
+                        <input type="text" class="form-control" asp-for="Sick" placeholder="Enter Sick Cases" />
+                        <span asp-validation-for="Sick" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Recorvered" class="control-label"></label>
+                        <input type="text" class="form-control" asp-for="Recorvered" placeholder="Enter Recorverd Case" />
+                        <span asp-validation-for="Recorvered" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Death" class="control-label"></label>
+                        <input type="text" class="form-control" asp-for="Death" placeholder="Enter Death Cases" />
+                        <span asp-validation-for="Death" class="text-danger"></span>
+                    </div>
+
+                    @*<div class="form-group">
+                <label asp-for="Tested" class="control-label"></label>
+                <input type="text" asp-for="Tested" placeholder="Enter Sick Cases" />
+                <span asp-validation-for="Tested" class="text-danger"></span>
+            </div>*@
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-primary" />
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -4,14 +4,16 @@ using Covid19Tracker.Data.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Covid19Tracker.Data.Migrations
 {
     [DbContext(typeof(Covid19TrackerDBContext))]
-    partial class Covid19TrackerDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200423073354_RealCases")]
+    partial class RealCases
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
