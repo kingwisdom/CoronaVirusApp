@@ -10,24 +10,26 @@ using Covid19Tracker.Web.ViewModels;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Covid19Tracker.Data.DataContext;
-using Covid19Tracker.Service.Services.Implementation;
+using Covid19Tracker.Service.Services;
 
 namespace Covid19Tracker.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICovid19CaseManagerService _covic;
+
         //private readonly Covid19TrackerDBContext _covic;
 
-        private readonly ICovicServiceImplementation _covic;
 
 
-         public HomeController(ILogger<HomeController> logger, ICovicServiceImplementation covic)
+        public HomeController(ILogger<HomeController> logger, ICovid19CaseManagerService covic)
         //public HomeController(ILogger<HomeController> logger, Covid19TrackerDBContext covic)
         {
             _logger = logger;
-            
-             _covic = covic;
+            _covic = covic;
+
+            //_covic = covic;
         }
 
         //var response = await httpClient.GetAsync("https://api.apify.com/v2/key-value-stores/Eb694wt67UxjdSGbc/records/LATEST?disableRedirect=true");
@@ -40,10 +42,25 @@ namespace Covid19Tracker.Controllers
             // var model = _covic.RealCase.All(RealCase);
             var model = _covic.GetCases();
 
+            var all = Convert.ToDouble(model.Sum(e=>e.Cases));
+            var recov = Convert.ToDouble(model.Sum(e => e.Recorvered));
+            var sicki = Convert.ToDouble(model.Sum(e => e.Sick));
+            var deathy = Convert.ToDouble(model.Sum(e => e.Death));
+
+            double a = recov / all;
+            double Getrecoverbar = Math.Round(a * 100);
+            double b = sicki / all;
+            double Getsickbar = Math.Round(b * 100);
+            double c = deathy / all;
+            double Getdeathbar = Math.Round(c * 100);
+
             CasesViewModel cases = new CasesViewModel
             {
-                AllCases = model
-                
+                AllCases = model,
+                getrecoverbar = (Getrecoverbar),
+                 getsickbar = (Getsickbar),
+                getdeathbar = (Getdeathbar)
+
             };
             //var model =  _covid19CaseManager.GetAllCasesCount();
 

@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label asp-for="Cases" class="control-label"></label>
-                        <input type="text" asp-for="Cases" class="form-control" placeholder="Enter Recorverd Case" />
+                        <input type="text" asp-for="Cases" class="form-control" placeholder="Enter All Available Cases" />
                         <span asp-validation-for="Cases" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -33,8 +33,8 @@
                         <span asp-validation-for="Sick" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Recorvered" class="form-control" class="control-label"></label>
-                        <input type="text" asp-for="Recorvered" placeholder="Enter Recorverd Case" />
+                        <label asp-for="Recorvered" class="control-label"></label>
+                        <input type="text" asp-for="Recorvered"  class="form-control" placeholder="Enter Recorvered Case" />
                         <span asp-validation-for="Recorvered" class="text-danger"></span>
                     </div>
 
@@ -62,7 +62,7 @@
     </div>
 
     <div>
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="RealIndex">Back to List</a>
     </div>
     </div>
 

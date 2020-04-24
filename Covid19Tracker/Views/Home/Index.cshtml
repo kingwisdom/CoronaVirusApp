@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var all = @Model.AllCases.Sum(e => e.Cases);
 
-    //var sickbar = (Model.Sick / Model.All) * 100;
-    //var recoverbar = (Model.Recorverd / Model.All) * 100;
-    //var deathbar = (Model.Death / Model.All) * 100;
+    var sickbar = Math.Round((@Model.getsickbar / all) * 100);
+    var recoverbar = Math.Round((@Model.getrecoverbar / all) * 100);
+    var deathbar = Math.Round((Model.getdeathbar / all) * 100);
 
 }
 
@@ -23,7 +24,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">All Cases</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AllCases.Count()</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AllCases.Sum(e => e.Cases)</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-h-square fa-2x text-gray-300"></i>
@@ -40,7 +41,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Recovered Cases</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Recorverd</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AllCases.Sum(e => e.Recorvered)</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-heart fa-2x text-gray-300"></i>
@@ -56,7 +57,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Sick Cases</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Sick</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AllCases.Sum(e => e.Sick)</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-ambulance fa-2x text-gray-300"></i>
@@ -73,7 +74,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Death Cases</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Death</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AllCases.Sum(e => e.Death)</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-times fa-2x text-gray-300"></i>
@@ -93,7 +94,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Overview Graph</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Covid'19 Overview Graph</h6>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -109,7 +110,7 @@
                     <div class="card-body">
                         @*<div class="chart-area">
                             <canvas id="myAreaChart"></canvas>
-                        </div*@>
+                        </div>*@
 
                         <h4 class="small font-weight-bold">Death <span class="float-right"> @Model.getdeathbar %</span></h4>
                         <div class="progress mb-4">
@@ -139,7 +140,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                 <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" asp-controller="covidcases" asp-action="create">Add</a>
+                                <a class="dropdown-item" asp-controller="covidcases" asp-action="createcases">Add</a>
 
                             </div>
                         </div>
@@ -147,9 +148,9 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-pie pt-4 pb-2">
-                            <input hidden value="@Model.Sick" id="sick"/>
-                            <input hidden value="@Model.Recorverd" id="recovered" />
-                            <input hidden value="@Model.Death" id="death" />
+                            <input hidden value="@Model.AllCases.Sum(e => e.Sick)" id="sick"/>
+                            <input hidden value="@Model.AllCases.Sum(e => e.Recorvered)" id="recovered" />
+                            <input hidden value="@Model.AllCases.Sum(e => e.Death)" id="death" />
                             <canvas id="myPieChart"></canvas>
                         </div>
                         <div class="mt-4 text-center small">
@@ -223,5 +224,5 @@
             </div>
         </div>
 
-     
+     </div>
 <!-- /.container-fluid -->

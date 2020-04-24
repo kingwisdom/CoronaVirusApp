@@ -238,8 +238,7 @@ namespace Covid19Tracker.Web.Controllers
                 return NotFound();
             }
 
-            var covidCase = await _context.Covid19Trackers
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var covidCase = await _context.RealCase.FirstOrDefaultAsync(m => m.ID == id);
             if (covidCase == null)
             {
                 return NotFound();
@@ -255,15 +254,15 @@ namespace Covid19Tracker.Web.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var covidCase = await _context.Covid19Trackers.FindAsync(id);
-            _context.Covid19Trackers.Remove(covidCase);
+            var covidCase = await _context.RealCase.FindAsync(id);
+            _context.RealCase.Remove(covidCase);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(RealIndex));
         }
 
         private bool CovidCaseExists(Guid id)
         {
-            return _context.Covid19Trackers.Any(e => e.ID == id);
+            return _context.RealCase.Any(e => e.ID == id);
         }
 
 
@@ -355,5 +354,24 @@ namespace Covid19Tracker.Web.Controllers
             }
             return View(covidCase);
         }
+
+        // GET: CovidCases/Delete/5
+        [Authorize]
+        public async Task<IActionResult> DeleteCase(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var covidCase = await _context.RealCase.FirstOrDefaultAsync(m => m.ID == id);
+            if (covidCase == null)
+            {
+                return NotFound();
+            }
+
+            return View(covidCase);
+        }
+
     }
 }

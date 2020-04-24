@@ -149,10 +149,9 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-
                     <ul class="navbar-nav ml-auto">
 
-                        <li class="nav-item">NIGERIA</li>
+                        <li class="nav-item"> <a href="#" class="nav-link">NIGERIA</a></li>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -215,7 +214,6 @@
 
                 </nav>
                 <div class="alert alert-info" id="todayDate">
-
                 </div>
                 <!-- End of Topbar -->
                 @*main body*@
@@ -290,7 +288,7 @@
     <script>
         var today = new Date();
         var date =  today.getDate() + ' / ' + (today.getMonth() + 1) + ' / ' + today.getFullYear();
-        var DateOutput = `The Recorded Covid'19 in Nigeria as at today: ${date}`;
+        var DateOutput = `The Recorded Covid'19 in Nigeria as at today: ${date} and \t more than 10,061 have been Tested in Nigeria`;
 
         document.getElementById('todayDate').innerText = DateOutput;
     </script>

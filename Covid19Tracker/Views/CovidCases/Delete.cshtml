@@ -1,4 +1,5 @@
-﻿@model Covid19Tracker.Entities.Tracker.CovidCase
+﻿
+@model Covid19Tracker.Entities.Tracker.CovidCase
 
 @{
     ViewData["Title"] = "Delete";
@@ -55,7 +56,7 @@
         <form asp-action="Delete">
             <input type="hidden" asp-for="ID" />
             <input type="submit" value="Delete" class="btn btn-danger" /> |
-            <a asp-action="Index">Back to List</a>
+            <a asp-action="RealIndex">Back to List</a>
         </form>
     </div>
-    </div>
+</div>

@@ -3,7 +3,7 @@
 @model IEnumerable<Covid19Tracker.Entities.Tracker.RealCases>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Covid Cases";
 }
 
 <!-- Begin Page Content -->
@@ -69,7 +69,7 @@
                                 <td>
                                     @if (signInManager.IsSignedIn(User))
                                     {
-                                        <a asp-action="EditCases" asp-route-id="@item.ID" class="btn btn-warning">Edit</a> <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                                        <a asp-action="EditCases" asp-route-id="@item.ID" class="btn btn-warning">Edit</a> <a asp-action="DeleteCase" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
                                     }
                                 </td>
 
@@ -83,3 +83,4 @@
 
     </div>
 
+    </div>
