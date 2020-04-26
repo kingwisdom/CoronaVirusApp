@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Covid19Tracker.Entities.Tracker
@@ -18,7 +19,7 @@ namespace Covid19Tracker.Entities.Tracker
         public Gender? Gender { get; set; }
 
         public string Nationality { get; set; }
-
+        [MaxLength(100)]
         public CaseStatus CaseStatus { get; set; }
 
         public string State { get; set; }

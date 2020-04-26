@@ -23,7 +23,34 @@
 
     <!-- Custom styles for this template-->
     <link href="~/theme/css/sb-admin-2.css" rel="stylesheet" />
+    <script>
+        var uurl = 'https://api.apify.com/v2/key-value-stores/Eb694wt67UxjdSGbc/records/LATEST?disableRedirect=true';
+        const response = fetch(uurl)
+            .then(response => response.json())
+            .then(data => {
+                let deathNoElement = document.getElementById('deathhead');
+                let deathpercent = Math.round((data.deceased / data.infected) * 100);
+                deathNoElement.innerText = `${deathpercent}%`;
+                document.getElementById('deathbars').style.width = `${deathpercent}%`;
 
+                let sickNoElement = document.getElementById('sickhead');
+                let sickpipu = (((data.infected - data.recovered) - data.deceased));
+                let sickpercent = Math.round((sickpipu / data.infected) * 100);
+                sickNoElement.innerText = `${sickpercent}%`;
+                document.getElementById('sickbars').style.width = `${sickpercent}%`;
+
+                let recoverNoElement = document.getElementById('recoverhead');
+                let recoverpercent = Math.round((data.recovered / data.infected) * 100);
+                recoverNoElement.innerText = `${recoverpercent}%`;
+                document.getElementById('recoverbars').style.width = `${recoverpercent}%`;
+
+                document.getElementById('mainall').innerText = `${data.infected}`;
+                document.getElementById('mainrecover').innerText = `${data.recovered}`;
+                document.getElementById('mainsick').innerText = `${sickpipu}`;
+                document.getElementById('maindeath').innerText = `${data.deceased}`;
+
+            });
+    </script>
 
 </head>
 
@@ -265,6 +292,8 @@
         </div>
     </div>
 
+    <script src="~/js/site.js"></script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="~/theme/js/sb-admin-2.js"></script>
     <script src="~/theme/vendor/jquery/jquery.min.js"></script>
@@ -284,15 +313,15 @@
     <script src="~/theme/js/demo/chart-pie-demo.js"></script>
 
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>*@
 
     <script>
         var today = new Date();
-        var date =  today.getDate() + ' / ' + (today.getMonth() + 1) + ' / ' + today.getFullYear();
+        var date = today.getDate() + ' / ' + (today.getMonth() + 1) + ' / ' + today.getFullYear();
         var DateOutput = `The Recorded Covid'19 in Nigeria as at today: ${date}`;
-
         document.getElementById('todayDate').innerText = DateOutput;
+        
     </script>
 
     @RenderSection("Scripts", required: false)
