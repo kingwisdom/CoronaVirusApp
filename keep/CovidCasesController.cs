@@ -238,7 +238,8 @@ namespace Covid19Tracker.Web.Controllers
                 return NotFound();
             }
 
-            var covidCase = await _context.RealCase.FirstOrDefaultAsync(m => m.ID == id);
+            var covidCase = await _context.Covid19Trackers
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (covidCase == null)
             {
                 return NotFound();
@@ -254,124 +255,15 @@ namespace Covid19Tracker.Web.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var covidCase = await _context.RealCase.FindAsync(id);
-            _context.RealCase.Remove(covidCase);
+            var covidCase = await _context.Covid19Trackers.FindAsync(id);
+            _context.Covid19Trackers.Remove(covidCase);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(RealIndex));
+            return RedirectToAction(nameof(Index));
         }
 
         private bool CovidCaseExists(Guid id)
         {
-            return _context.RealCase.Any(e => e.ID == id);
+            return _context.Covid19Trackers.Any(e => e.ID == id);
         }
-
-
-        ///////This is just for figure
-        ///
-
-        // GET: CovidCases
-        public async Task<IActionResult> RealIndex()
-        {
-            return View(await _context.RealCase.ToListAsync());
-        }
-
-        // GET: CovidCases/Create
-        [HttpGet]
-        [Authorize]
-        public IActionResult CreateCases()
-        {
-            return View();
-        }
-
-        // POST: CovidCases/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateCases([Bind("ID,State,Cases,Sick,Recorvered,Death")] RealCases Case)
-        {
-            if (ModelState.IsValid)
-            {
-               
-                _context.Add(Case);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(RealIndex));
-            }
-            return View(Case);
-        }
-
-        ///RealCases
-        // GET: CovidCases/Edit/5
-        [Authorize]
-        public async Task<IActionResult> EditCases(Guid id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var covidCase = await _context.RealCase.FindAsync(id);
-            if (covidCase == null)
-            {
-                return NotFound();
-            }
-            return View(covidCase);
-        }
-
-        // POST: CovidCases/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> EditCases(Guid id, [Bind("ID,State,Cases,Sick,Recorvered,Death")] RealCases covidCase)
-        {
-            if (id != covidCase.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(covidCase);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CovidCaseExists(covidCase.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(RealIndex));
-            }
-            return View(covidCase);
-        }
-
-        // GET: CovidCases/Delete/5
-        [Authorize]
-        public async Task<IActionResult> DeleteCase(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var covidCase = await _context.RealCase.FirstOrDefaultAsync(m => m.ID == id);
-            if (covidCase == null)
-            {
-                return NotFound();
-            }
-
-            return View(covidCase);
-        }
-
     }
 }

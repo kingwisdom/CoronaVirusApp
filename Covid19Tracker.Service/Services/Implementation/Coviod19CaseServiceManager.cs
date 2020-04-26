@@ -10,10 +10,17 @@ namespace Covid19Tracker.Service.Services.Implementation
    public class Coviod19CaseServiceManager:ICovid19CaseManagerService
     {
         private readonly IRepository<CovidCase> repositoryCovidCase;
+        private readonly IRepository<RealCases> _covid;
 
-        public Coviod19CaseServiceManager(IRepository<CovidCase> repositoryCovidCase)
+        public Coviod19CaseServiceManager(IRepository<CovidCase> repositoryCovidCase, IRepository<RealCases> covid)
         {
             this.repositoryCovidCase = repositoryCovidCase;
+            _covid = covid;
+        }
+
+        public IEnumerable<RealCases> GetCases()
+        {
+            return _covid.GetAll();
         }
 
         public int GetAllCasesCount()=>this.repositoryCovidCase.GetAll().Count;
